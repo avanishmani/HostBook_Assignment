@@ -4,11 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.HostBook.Entity.Employee;
 import com.HostBook.Exception.EmployeeException;
 import com.HostBook.Repository.EmployeeRepo;
 
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	public EmployeeRepo empr;
@@ -16,6 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee addEmployee(Employee emp) throws EmployeeException {
 		Employee em = empr.save(emp);
+		
 		if (em != null)
 			return em;
 		else
