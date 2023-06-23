@@ -45,6 +45,7 @@ export class UpdateEmployeeComponent implements OnInit {
 
   id: number;
   employee: Employee = new Employee();
+  
   constructor(private employeeService: EmployeeService,
     private route: ActivatedRoute,
     private router: Router) { }
