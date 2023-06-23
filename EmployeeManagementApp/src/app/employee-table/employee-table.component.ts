@@ -19,8 +19,8 @@ import { Router } from '@angular/router';
       <tbody>
         <tr *ngFor="let employee of employees; index as i">
           <th scope="row">{{ i+1 }}</th>
-          <td>{{ employee.employee_FirstName }}</td>
-          <td>{{ employee.employee_LastName }}</td>
+          <td>{{ employee.employee_Firstname }}</td>
+          <td>{{ employee.employee_Lastname }}</td>
           <td>{{ employee.employee_Email }}</td>
           <td>
             <div class="d-flex justify-content-center">
@@ -50,8 +50,9 @@ export class EmployeeTableComponent  implements OnInit {
   getEmployees(): void {
     this.employeeService.getEmployeesList().subscribe(
       data => {
+
         this.employees = data;
-        console.log(data); // Log the data received from the API
+        // console.log(this.employees); // Log the data received from the API
       },
       error => {
         console.error('Error:', error);
@@ -64,13 +65,14 @@ export class EmployeeTableComponent  implements OnInit {
   }
 
   updateEmployee(id: number) {
+    // console.log(['update-employee', id]);
     this.router.navigate(['update-employee', id]);
   }
  
 
   deleteEmployee(id: number){
     this.employeeService.deleteEmployee(id).subscribe( data => {
-      console.log(data);
+     // console.log(data);
       this.getEmployees();
     })
   }

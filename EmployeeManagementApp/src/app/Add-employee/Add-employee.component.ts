@@ -16,17 +16,17 @@ import { Router } from '@angular/router';
 
               <div class="form-group">
                 <label> First Name</label>
-                <input type="text" class="form-control" [(ngModel)]="employee.Employee_FirstName" name="employee_FirstName">
+                <input type="text" class="form-control" [(ngModel)]="employee.employee_Firstname" name="employee_FirstName">
               </div>
 
               <div class="form-group">
                 <label> Last Name</label>
-                <input type="text" class="form-control" [(ngModel)]="employee.Employee_LastName" name="employee_LastName">
+                <input type="text" class="form-control" [(ngModel)]="employee.employee_Lastname" name="employee_LastName">
               </div>
 
               <div class="form-group">
                 <label> Email Id</label>
-                <input type="text" class="form-control" [(ngModel)]="employee.Employee_Email" name="employee_Email">
+                <input type="email" class="form-control" [(ngModel)]="employee.employee_Email" name="employee_Email">
               </div>
 
               <br />
@@ -49,12 +49,12 @@ export class AddEmployeeComponent implements OnInit {
   saveEmployee(): void {
     this.employeeService.addEmployee(this.employee).subscribe(
       (data: Employee) => {
-        console.log(data);
+        console.log(data,this.employee);
         this.goToEmployeeList();
-      },
-      (error: any) => {
-        console.log(error);
       }
+      // (error: any) => {
+      //   console.log(error);
+      // }
     );
   }
 
@@ -63,6 +63,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit(): void {
+   // console.log(this.employee);
     this.saveEmployee();
   }
 }

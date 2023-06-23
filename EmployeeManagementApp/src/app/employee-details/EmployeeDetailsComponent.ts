@@ -9,16 +9,16 @@ import { EmployeeService } from '../employee.service';
     <h3>View Employee Details</h3>
     <div *ngIf="employee">
     <div>
-        <label><b> Employee-ID: </b></label> {{ employee.employee_ID }}
+        <label><b> Employee-ID:   </b></label> {{ employee.employee_ID }}
       </div>
       <div>
-        <label><b> First Name: </b></label> {{ employee.employee_FirstName }}
+        <label><b> First Name:   </b></label> {{ employee.employee_Firstname }}
       </div>
       <div>
-        <label><b> Last Name: </b></label> {{ employee.employee_LastName }}
+        <label><b> Last Name:   </b></label> {{ employee.employee_Lastname }}
       </div>
       <div>
-        <label><b> Email Id: </b></label> {{ employee.employee_Email }}
+        <label><b> Email Id:   </b></label> {{ employee.employee_Email }}
       </div>
     </div>
   `,

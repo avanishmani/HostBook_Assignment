@@ -16,19 +16,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 
                     <div class="form-group">
                         <label> First Name</label>
-                        <input type="text" class="form-control" id="Employee_FirstName" [(ngModel)]="employee.Employee_FirstName"
+                        <input type="text" class="form-control" id="Employee_FirstName" [(ngModel)]="employee.employee_Firstname"
                             name="Employee_FirstName">
                     </div>
 
                     <div class="form-group">
                         <label> Last Name</label>
-                        <input type="text" class="form-control" id="Employee_LastName" [(ngModel)]="employee.Employee_LastName"
+                        <input type="text" class="form-control" id="Employee_LastName" [(ngModel)]="employee.employee_Lastname"
                             name="Employee_LastName">
                     </div>
 
                     <div class="form-group">
                         <label> Email Id</label>
-                        <input type="text" class="form-control" id="Employee_Email" [(ngModel)]="employee.Employee_Email"
+                        <input type="email" class="form-control" id="Employee_Email" [(ngModel)]="employee.employee_Email"
                             name="Employee_Email">
                     </div>
                     <br />
@@ -52,20 +52,30 @@ export class UpdateEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-
+console.log(this.id+"  is the id that i recievd from url");
     this.employeeService.getEmployeeById(this.id).subscribe(data => {
+      // console.log(data);
       this.employee = data;
-    }, error => console.log(error));
+    });
   }
 
   onSubmit(){
-    this.employeeService.updateEmployee(this.id, this.employee).subscribe( data =>{
-      this.goToEmployeeList();
-    }
-    , error => console.log(error));
+   
+    this.employeeService.updateEmployee( this.employee,this.id).subscribe(
+      (data: Employee) => {
+        console.log(data); // Log the updated employee details received from the backend
+        this.goToEmployeeList();
+      },
+      (error: any) => {
+        console.log(error); // Handle any errors that occurred during the API call
+      }
+    );
+   
+    
   }
 
   goToEmployeeList(){
     this.router.navigate(['/employees']);
   }
+
 }
