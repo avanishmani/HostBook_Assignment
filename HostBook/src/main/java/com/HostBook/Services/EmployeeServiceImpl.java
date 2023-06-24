@@ -29,18 +29,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee updateEmployeeDetails(Employee emp) throws EmployeeException {
-		Optional<Employee> em = empr.findById(emp.getEmployee_ID());
-		if (em.isEmpty())
-			throw new EmployeeException("No Such Employe is there in Our Database !");
-		else {
-			return empr.save(emp);
-//		Employee employee=em.get();	
-//		employee.setEmployee_Email(emp.getEmployee_Email());
-//		employee.setEmployee_FirstName(emp.getEmployee_FirstName());
-//		employee.setEmployee_LastName(emp.getEmployee_LastName());
-
-		}
+	public Employee updateEmployeeDetails(Employee emp,Integer id) throws EmployeeException {
+		  Optional<Employee> em = empr.findById(id);
+		    if (em.isEmpty()) {
+		        throw new EmployeeException("No Such Employee is there in Our Database !");
+		    } else {
+		        Employee existingEmployee = em.get();
+		        // Update the properties of the existing employee
+		        existingEmployee.setEmployee_Firstname(emp.getEmployee_Firstname());
+		        existingEmployee.setEmployee_Lastname(emp.getEmployee_Lastname());
+		        existingEmployee.setEmployee_Email(emp.getEmployee_Email());
+		        return empr.save(existingEmployee);
+		    }
 
 	}
 
@@ -75,6 +75,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> findAllEmployee() throws EmployeeException {
 		List<Employee> emplist = empr.findAll();
+		
+		for(Employee e:emplist) {
+			System.out.println(e);
+		}
 		if (emplist.size() != 0)
 			return emplist;
 		else

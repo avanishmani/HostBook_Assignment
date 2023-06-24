@@ -9,7 +9,7 @@ public interface EmployeeService {
 
 	public Employee addEmployee(Employee emp) throws EmployeeException;
 
-	public Employee updateEmployeeDetails(Employee emp) throws EmployeeException;
+	public Employee updateEmployeeDetails(Employee emp,Integer id) throws EmployeeException;
 
 	public List<Employee> deleteEmployeeAccount(Integer EmpID) throws EmployeeException;
 
